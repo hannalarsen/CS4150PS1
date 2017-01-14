@@ -29,17 +29,13 @@ namespace CS4150PS1
         /// </summary>
         string sortedWord;
 
-        static void Main(string[] args)
-        {
-            
 
-        }
 
         /// <summary>
         /// Adds words to the dictionary ArrayList
         /// </summary>
         /// <param name="word"></param>
-        private void addWords(string word)
+        public void addWords(string word)
         {
             words = new ArrayList();
             words.Add(word);
@@ -49,7 +45,7 @@ namespace CS4150PS1
         /// </summary>
         /// <param name="d">A dictionary of words</param>
         /// <returns>The number of words that are not anagrams</returns>
-        public int NotAnagrams(List<string> d)
+        public int NotAnagrams(ArrayList d)
         {
             foreach(string word in d)
             {
