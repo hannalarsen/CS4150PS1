@@ -53,6 +53,12 @@
     <Compile Include="MrAnagaTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\CS4150PS1\CS4150PS1.csproj">
+      <Project>{355c7bef-68f3-4520-8562-b998579fe092}</Project>
+      <Name>CS4150PS1</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Choose>
     <When Condition="'$(VisualStudioVersion)' == '10.0' And '$(IsCodedUITest)' == 'True'">
       <ItemGroup>

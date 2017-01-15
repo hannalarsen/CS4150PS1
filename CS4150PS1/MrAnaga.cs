@@ -8,7 +8,7 @@ using System.IO;
 
 namespace CS4150PS1
 {
-    class MrAnaga
+    public class MrAnaga
     {
         /// <summary>
         /// Available words
@@ -28,24 +28,24 @@ namespace CS4150PS1
         /// </summary>
         string sortedWord;
 
-
-
-        /// <summary>
-        /// Adds words to the dictionary ArrayList
-        /// </summary>
-        /// <param name="word"></param>
-        public void addWords(string word)
+        public static void Main (string[] args)
         {
-            words = new ArrayList();
-            words.Add(word);
+            MrAnaga a = new MrAnaga();
+            int result = a.NotAnagrams(@"C:\Users\hannal\Downloads\test2.in");
+            Console.WriteLine(result);
         }
+
         /// <summary>
         /// Counts the number of words that are not anagrams of other words in the dictionary.
         /// </summary>
-        /// <param name="d">A dictionary of words</param>
+        /// <param name="filePath">Fath of the file containing words to be sorted</param>
         /// <returns>The number of words that are not anagrams</returns>
         public int NotAnagrams(string filePath)
         {
+            // Creates new instances of the collections of words
+            words = new ArrayList();
+            solutions = new HashSet<string>();
+            rejected = new HashSet<string>();
             // Trys to open the file
             try
             {
@@ -67,18 +67,22 @@ namespace CS4150PS1
 
                 foreach (string word in words)
                 {
+                // Sorts the word alphabetically
                     sortedWord = String.Concat(word.OrderBy(c => c));
+                // Checks to see if it already contained in solutions.  If yes, adds to rejected.
                     if (solutions.Contains(sortedWord))
                     {
                         solutions.Remove(sortedWord);
                         rejected.Add(sortedWord);
                     }
+                    // Otherwise adds word to solutions
                     else if (!rejected.Contains(sortedWord))
                     {
                         solutions.Add(sortedWord);
                     }
                 }
-            return solutions.Count;
+                // Returns the number of unique words (minus one to account for the first row of numbers)
+            return solutions.Count - 1;
         }
     }
 }
