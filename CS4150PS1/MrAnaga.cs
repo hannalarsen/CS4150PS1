@@ -59,12 +59,17 @@ namespace CS4150PS1
                     }
                 }
             }
-            // Catches any exceptions and displays what the exception was
+            // Catches any exceptions and throws the exception
             catch (Exception e)
             {
-                Console.WriteLine(e.Message);
+                throw e;
             }
 
+            // If there are no words in the file
+            if (words.Count == 0)
+            {
+                return 0;
+            }
                 foreach (string word in words)
                 {
                 // Sorts the word alphabetically
@@ -81,6 +86,11 @@ namespace CS4150PS1
                         solutions.Add(sortedWord);
                     }
                 }
+
+            if (solutions.Count == 0)
+            {
+                return 0;
+            }
                 // Returns the number of unique words (minus one to account for the first row of numbers)
             return solutions.Count - 1;
         }
