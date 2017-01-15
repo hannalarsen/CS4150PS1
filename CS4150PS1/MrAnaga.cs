@@ -4,8 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Collections;
-
-
+using System.IO;
 
 namespace CS4150PS1
 {
@@ -45,21 +44,40 @@ namespace CS4150PS1
         /// </summary>
         /// <param name="d">A dictionary of words</param>
         /// <returns>The number of words that are not anagrams</returns>
-        public int NotAnagrams(ArrayList d)
+        public int NotAnagrams(string filePath)
         {
-            foreach(string word in d)
+            // Trys to open the file
+            try
             {
-                sortedWord = String.Concat(word.OrderBy(c => c));
-                if(solutions.Contains(sortedWord))
+                using (StreamReader sr = File.OpenText(filePath))
                 {
-                    solutions.Remove(sortedWord);
-                    rejected.Add(sortedWord);
-                }
-                else if(!rejected.Contains(sortedWord))
-                {
-                    solutions.Add(sortedWord);
+                    string line = "";
+                    // Adds the words to the Arraylist of words
+                    while ((line = sr.ReadLine()) != null)
+                    {
+                        words.Add(line);
+                    }
                 }
             }
+            // Catches any exceptions and displays what the exception was
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+            }
+
+                foreach (string word in words)
+                {
+                    sortedWord = String.Concat(word.OrderBy(c => c));
+                    if (solutions.Contains(sortedWord))
+                    {
+                        solutions.Remove(sortedWord);
+                        rejected.Add(sortedWord);
+                    }
+                    else if (!rejected.Contains(sortedWord))
+                    {
+                        solutions.Add(sortedWord);
+                    }
+                }
             return solutions.Count;
         }
     }
