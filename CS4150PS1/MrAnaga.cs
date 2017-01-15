@@ -35,7 +35,10 @@ namespace CS4150PS1
         public static void Main (string[] args)
         {
             MrAnaga m = new MrAnaga();
-            m.NotAnagrams(file);
+            string file = "";
+            Console.Write("Enter file path: ");
+            file = Console.ReadLine();
+            Console.WriteLine(m.NotAnagrams(file).ToString());
         }
         /// <summary>
         /// Counts the number of words that are not anagrams of other words in the dictionary.
