@@ -28,17 +28,19 @@ namespace CS4150PS1
         /// </summary>
         string sortedWord;
 
+        /// <summary>
+        /// Main Method
+        /// </summary>
+        /// <param name="args"></param>
         public static void Main (string[] args)
         {
-            MrAnaga a = new MrAnaga();
-            int result = a.NotAnagrams(@"C:\Users\hannal\Downloads\test2.in");
-            Console.WriteLine(result);
+            MrAnaga m = new MrAnaga();
+            m.NotAnagrams(file);
         }
-
         /// <summary>
         /// Counts the number of words that are not anagrams of other words in the dictionary.
         /// </summary>
-        /// <param name="filePath">Fath of the file containing words to be sorted</param>
+        /// <param name="filePath">Path of the file containing words to be sorted</param>
         /// <returns>The number of words that are not anagrams</returns>
         public int NotAnagrams(string filePath)
         {
