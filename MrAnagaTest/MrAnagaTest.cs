@@ -26,5 +26,16 @@ namespace MrAnagaTest
         {
             Assert.AreEqual(2, m.NotAnagrams(@"C:\Users\hannal\Downloads\test2.in"));
         }
+
+
+        /// <summary>
+        /// Tests a correct result for NotAnagrams
+        /// </summary>
+        [TestMethod]
+        public void TestCorrect3()
+        {
+            Assert.AreEqual(2, m.NotAnagrams(@"C:\Users\hannal\Downloads\test2.in"));
+        }
+
     }
 }
