@@ -24,12 +24,73 @@ namespace MrAnagaTest
                     words.Add(line);
                 }
             }
-           
+
             Assert.AreEqual("1", m.NotAnagrams(words));
-
-            
-
         }
-        
+
+        [TestMethod]
+        public void TestCorrect2()
+        {
+            words = new ArrayList();
+            using (StreamReader sr = File.OpenText(@"C:\Users\hannal\Documents\test2.in"))
+            {
+                string line = "";
+                while ((line = sr.ReadLine()) != null)
+                {
+                    words.Add(line);
+                }
+            }
+
+            Assert.AreEqual("2", m.NotAnagrams(words));
+        }
+
+        [TestMethod]
+        public void TestCorrect3()
+        {
+            words = new ArrayList();
+            using (StreamReader sr = File.OpenText(@"C:\Users\hannal\Documents\test3.txt"))
+            {
+                string line = "";
+                while ((line = sr.ReadLine()) != null)
+                {
+                    words.Add(line);
+                }
+            }
+
+            Assert.AreEqual("6", m.NotAnagrams(words));
+        }
+
+        [TestMethod]
+        public void TestCorrect4()
+        {
+            words = new ArrayList();
+            using (StreamReader sr = File.OpenText(@"C:\Users\hannal\Documents\test4.txt"))
+            {
+                string line = "";
+                while ((line = sr.ReadLine()) != null)
+                {
+                    words.Add(line);
+                }
+            }
+
+            Assert.AreEqual("26", m.NotAnagrams(words));
+        }
+
+        [TestMethod]
+        public void TestCorrect5()
+        {
+            words = new ArrayList();
+            using (StreamReader sr = File.OpenText(@"C:\Users\hannal\Documents\test5.txt"))
+            {
+                string line = "";
+                while ((line = sr.ReadLine()) != null)
+                {
+                    words.Add(line);
+                }
+            }
+
+            Assert.AreEqual("0", m.NotAnagrams(words));
+        }
+
     }
 }
