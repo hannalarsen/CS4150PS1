@@ -41,7 +41,7 @@ namespace CS4150PS1
         /// <summary>
         /// Method that adds words from standard input into the dictionary Arraylist
         /// </summary>
-        private void AddWords()
+        public void AddWords()
         {
             words = new ArrayList();
             string word = "";
@@ -72,20 +72,19 @@ namespace CS4150PS1
         /// </summary>
         /// <param name="filePath">Path of the file containing words to be sorted</param>
         /// <returns>The number of words that are not anagrams</returns>
-        public void NotAnagrams(ArrayList w)
-
+        public string NotAnagrams(ArrayList w)
         {
             solutions = new HashSet<string>();
             rejected = new HashSet<string>();
 
             // If there are no words in the dictionary
-            if (words.Count == 0)
+            if (w.Count == 0)
             {
                Console.WriteLine("0");
-                return;
+                return "0";
             }
             
-            foreach (string word in words)
+            foreach (string word in w)
             {
                 // Sorts the word alphabetically
                 sortedWord = String.Concat(word.OrderBy(c => c));
@@ -105,11 +104,12 @@ namespace CS4150PS1
             if (solutions.Count == 0)
             {
                 Console.WriteLine("0");
-                return;
+                return "0";
             }
             int total = solutions.Count - 1;
             // Returns the number of unique words (minus one to account for the first row of numbers)
             Console.WriteLine(total.ToString());
+            return total.ToString();
         }
     }
 }
