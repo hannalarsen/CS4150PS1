@@ -76,6 +76,7 @@ namespace CS4150PS1
             }
             NotAnagrams(words);
         }
+
         /// <summary>
         /// Counts the number of words that are not anagrams of other words in the dictionary.
         /// </summary>
@@ -95,8 +96,15 @@ namespace CS4150PS1
                     return "0";
                 }
 
+                w.RemoveAt(0);
+                if (w.Count > 10000)
+                {
+                    throw new Exception();
+                }
+
                 foreach (string word in w)
                 {
+                    word.ToLower();
                     // Sorts the word alphabetically
                     sortedWord = String.Concat(word.OrderBy(c => c));
                     // Checks to see if it already contained in solutions.  If yes, adds to rejected.
@@ -117,8 +125,8 @@ namespace CS4150PS1
                     Console.WriteLine("0");
                     return "0";
                 }
-                int total = solutions.Count - 1;
-                // Returns the number of unique words (minus one to account for the first row of numbers)
+                int total = solutions.Count;
+                // Returns the number of unique words 
                 Console.WriteLine(total.ToString());
                 return total.ToString();
             }

@@ -103,7 +103,6 @@ namespace MrAnagaTest
                     words.Add(line);
                 }
             }
-
             Assert.AreEqual("0", m.NotAnagrams(words));
         }
     }
