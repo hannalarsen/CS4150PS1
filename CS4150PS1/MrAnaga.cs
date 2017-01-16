@@ -45,23 +45,35 @@ namespace CS4150PS1
         {
             words = new ArrayList();
             string word = "";
-            do
+            try
             {
-                word = Console.ReadLine();
-                if (word.Length > 0 && (word != null))
+                do
                 {
-                    words.Add(word);
+                    word = Console.ReadLine();
+                    if (String.IsNullOrWhiteSpace(word) == false && word.Length > 0)
+                    {
+                        words.Add(word);
+                    }
+                    else
+                    {
+                        throw new Exception(); 
+                    }
                 }
+                while (word.Length > 0 && word != null);
             }
-            while (word.Length > 0 && word != null);
-            NotAnagrams2(words);
+            catch (Exception e)
+            {
+                throw e;
+            }
+            NotAnagrams(words);
         }
         /// <summary>
         /// Counts the number of words that are not anagrams of other words in the dictionary.
         /// </summary>
         /// <param name="filePath">Path of the file containing words to be sorted</param>
         /// <returns>The number of words that are not anagrams</returns>
-        public void NotAnagrams2(ArrayList w)
+        public void NotAnagrams(ArrayList w)
+
         {
             solutions = new HashSet<string>();
             rejected = new HashSet<string>();
@@ -69,9 +81,10 @@ namespace CS4150PS1
             // If there are no words in the dictionary
             if (words.Count == 0)
             {
-               Console.WriteLine(0.ToString());
+               Console.WriteLine("0");
                 return;
             }
+            
             foreach (string word in words)
             {
                 // Sorts the word alphabetically
@@ -91,7 +104,7 @@ namespace CS4150PS1
 
             if (solutions.Count == 0)
             {
-                Console.WriteLine(0.ToString());
+                Console.WriteLine("0");
                 return;
             }
             int total = solutions.Count - 1;
