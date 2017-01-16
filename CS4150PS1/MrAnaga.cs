@@ -56,14 +56,18 @@ namespace CS4150PS1
                     }
                     else
                     {
-                        throw new Exception(); 
+                        throw new ArgumentException(); 
                     }
                 }
                 while (word.Length > 0 && word != null);
             }
-            catch (Exception e)
+            catch (ArgumentException e1)
             {
-                throw e;
+                return;              
+            }
+            catch (FormatException e2)
+            {
+                return;
             }
             NotAnagrams(words);
         }
@@ -74,42 +78,49 @@ namespace CS4150PS1
         /// <returns>The number of words that are not anagrams</returns>
         public string NotAnagrams(ArrayList w)
         {
-            solutions = new HashSet<string>();
-            rejected = new HashSet<string>();
+            try
+            {
+                solutions = new HashSet<string>();
+                rejected = new HashSet<string>();
 
-            // If there are no words in the dictionary
-            if (w.Count == 0)
-            {
-               Console.WriteLine("0");
-                return "0";
-            }
-            
-            foreach (string word in w)
-            {
-                // Sorts the word alphabetically
-                sortedWord = String.Concat(word.OrderBy(c => c));
-                // Checks to see if it already contained in solutions.  If yes, adds to rejected.
-                if (solutions.Contains(sortedWord))
+                // If there are no words in the dictionary
+                if (w.Count == 0)
                 {
-                    solutions.Remove(sortedWord);
-                    rejected.Add(sortedWord);
+                    Console.WriteLine("0");
+                    return "0";
                 }
-                // Otherwise adds word to solutions
-                else if (!rejected.Contains(sortedWord))
-                {
-                    solutions.Add(sortedWord);
-                }
-            }
 
-            if (solutions.Count == 0)
-            {
-                Console.WriteLine("0");
-                return "0";
+                foreach (string word in w)
+                {
+                    // Sorts the word alphabetically
+                    sortedWord = String.Concat(word.OrderBy(c => c));
+                    // Checks to see if it already contained in solutions.  If yes, adds to rejected.
+                    if (solutions.Contains(sortedWord))
+                    {
+                        solutions.Remove(sortedWord);
+                        rejected.Add(sortedWord);
+                    }
+                    // Otherwise adds word to solutions
+                    else if (!rejected.Contains(sortedWord))
+                    {
+                        solutions.Add(sortedWord);
+                    }
+                }
+
+                if (solutions.Count == 0)
+                {
+                    Console.WriteLine("0");
+                    return "0";
+                }
+                int total = solutions.Count - 1;
+                // Returns the number of unique words (minus one to account for the first row of numbers)
+                Console.WriteLine(total.ToString());
+                return total.ToString();
             }
-            int total = solutions.Count - 1;
-            // Returns the number of unique words (minus one to account for the first row of numbers)
-            Console.WriteLine(total.ToString());
-            return total.ToString();
+            catch (Exception e)
+            {
+                return "";
+            }
         }
     }
 }

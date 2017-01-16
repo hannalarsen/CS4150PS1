@@ -12,6 +12,9 @@ namespace MrAnagaTest
         MrAnaga m = new MrAnaga();
         ArrayList words;
 
+        /// <summary>
+        /// Tests a correct result 3 2 1
+        /// </summary>
        [TestMethod]
        public void TestCorrect1()
         {
@@ -28,6 +31,9 @@ namespace MrAnagaTest
             Assert.AreEqual("1", m.NotAnagrams(words));
         }
 
+        /// <summary>
+        /// Tests a correct result 6 4 2
+        /// </summary>
         [TestMethod]
         public void TestCorrect2()
         {
@@ -44,6 +50,9 @@ namespace MrAnagaTest
             Assert.AreEqual("2", m.NotAnagrams(words));
         }
 
+        /// <summary>
+        /// Tests a correct result 
+        /// </summary>
         [TestMethod]
         public void TestCorrect3()
         {
@@ -60,6 +69,9 @@ namespace MrAnagaTest
             Assert.AreEqual("6", m.NotAnagrams(words));
         }
 
+        /// <summary>
+        /// Tests a correct result
+        /// </summary>
         [TestMethod]
         public void TestCorrect4()
         {
@@ -76,6 +88,9 @@ namespace MrAnagaTest
             Assert.AreEqual("26", m.NotAnagrams(words));
         }
 
+        /// <summary>
+        /// Tests a correct result
+        /// </summary>
         [TestMethod]
         public void TestCorrect5()
         {
@@ -91,6 +106,5 @@ namespace MrAnagaTest
 
             Assert.AreEqual("0", m.NotAnagrams(words));
         }
-
     }
 }
