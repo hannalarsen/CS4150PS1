@@ -52,6 +52,11 @@ namespace CS4150PS1
                     word = Console.ReadLine();
                     if (String.IsNullOrWhiteSpace(word) == false && word.Length > 0)
                     {
+                        if (word.Length > 1000)
+                        {
+                            throw new FormatException();
+                        }
+
                         words.Add(word);
                     }
                     else
@@ -74,7 +79,7 @@ namespace CS4150PS1
         /// <summary>
         /// Counts the number of words that are not anagrams of other words in the dictionary.
         /// </summary>
-        /// <param name="filePath">Path of the file containing words to be sorted</param>
+        /// <param name="w">Arraylist of words</param>
         /// <returns>The number of words that are not anagrams</returns>
         public string NotAnagrams(ArrayList w)
         {
