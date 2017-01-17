@@ -105,5 +105,33 @@ namespace MrAnagaTest
             }
             Assert.AreEqual("0", m.NotAnagrams(words));
         }
+
+        /// <summary>
+        /// Tests for when there are empty lines in between words
+        /// </summary>
+        [TestMethod]
+        public void TestEmptyLines1()
+        {
+            words = new ArrayList();
+            using (StreamReader sr = File.OpenText(@"C:\Users\hannal\Documents\testEmptyLines.txt"))
+            {
+                string line = "";
+                while ((line = sr.ReadLine()) != null)
+                {
+                    words.Add(line);
+                }
+            }
+            Assert.AreEqual("1", m.NotAnagrams(words));
+        }
+
+        /// <summary>
+        /// Tests for an empty dictionary
+        /// </summary>
+        [TestMethod]
+        public void TestEmptyDictionary()
+        {
+            words = new ArrayList();
+            Assert.AreEqual("0", m.NotAnagrams(words));
+        }
     }
 }

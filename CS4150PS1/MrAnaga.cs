@@ -35,13 +35,13 @@ namespace CS4150PS1
         public static void Main (string[] args)
         {
             MrAnaga m = new MrAnaga();
-            m.AddWords();
+            Console.WriteLine(m.NotAnagrams(m.AddWords()));
         }
 
         /// <summary>
         /// Method that adds words from standard input into the dictionary Arraylist
         /// </summary>
-        public void AddWords()
+        public ArrayList AddWords()
         {
             words = new ArrayList();
             string word = "";
@@ -57,24 +57,29 @@ namespace CS4150PS1
                             throw new FormatException();
                         }
 
+                        if(word.Any(ch => ! Char.IsLetterOrDigit(ch)))
+                        {
+                            throw new FormatException();
+                        }
+
                         words.Add(word);
                     }
                     else
                     {
-                        throw new ArgumentException(); 
+                        throw new ArgumentException();
                     }
                 }
                 while (word.Length > 0 && word != null);
-            }
-            catch (ArgumentException e1)
-            {
-                return;              
-            }
-            catch (FormatException e2)
-            {
-                return;
-            }
-            NotAnagrams(words);
+                }
+                catch (ArgumentException e1)
+                {
+                    return new ArrayList();              
+                }
+                catch (FormatException e2)
+                {
+                    return new ArrayList();
+                }
+            return words;
         }
 
         /// <summary>
@@ -104,7 +109,6 @@ namespace CS4150PS1
 
                 foreach (string word in w)
                 {
-                    word.ToLower();
                     // Sorts the word alphabetically
                     sortedWord = String.Concat(word.OrderBy(c => c));
                     // Checks to see if it already contained in solutions.  If yes, adds to rejected.
@@ -132,7 +136,7 @@ namespace CS4150PS1
             }
             catch (Exception e)
             {
-                return "";
+                return "0";
             }
         }
     }
