@@ -47,38 +47,32 @@ namespace CS4150PS1
             string word = "";
             try
             {
-                do
+                while ((word = Console.ReadLine()) != null && word.Length > 0)
                 {
-                    word = Console.ReadLine();
-                    if (String.IsNullOrWhiteSpace(word) == false && word.Length > 0)
+                    if (word.Any(ch => Char.IsLetterOrDigit(ch)))
+                    //if (String.IsNullOrWhiteSpace(word) == false && word.Length > 0)
                     {
                         if (word.Length > 1000)
                         {
-                            throw new FormatException();
-                        }
-
-                        if(word.Any(ch => ! Char.IsLetterOrDigit(ch)))
-                        {
-                            throw new FormatException();
+                            throw new Exception();
                         }
 
                         words.Add(word);
                     }
-                    else
-                    {
-                        throw new ArgumentException();
-                    }
+                    //else
+                    //{
+                    //    throw new ArgumentException();
+                    //}
                 }
-                while (word.Length > 0 && word != null);
-                }
-                catch (ArgumentException e1)
-                {
-                    return new ArrayList();              
-                }
-                catch (FormatException e2)
-                {
-                    return new ArrayList();
-                }
+            }
+            catch (ArgumentException e1)
+            {
+                return new ArrayList();
+            }
+            catch (Exception e2)
+            {
+                return new ArrayList();
+            }
             return words;
         }
 
@@ -97,7 +91,7 @@ namespace CS4150PS1
                 // If there are no words in the dictionary
                 if (w.Count == 0)
                 {
-                    Console.WriteLine("0");
+                    //Console.WriteLine("0");
                     return "0";
                 }
 
@@ -111,6 +105,7 @@ namespace CS4150PS1
                 {
                     // Sorts the word alphabetically
                     sortedWord = String.Concat(word.OrderBy(c => c));
+
                     // Checks to see if it already contained in solutions.  If yes, adds to rejected.
                     if (solutions.Contains(sortedWord))
                     {
@@ -131,7 +126,7 @@ namespace CS4150PS1
                 }
                 int total = solutions.Count;
                 // Returns the number of unique words 
-                Console.WriteLine(total.ToString());
+                //Console.WriteLine(total.ToString());
                 return total.ToString();
             }
             catch (Exception e)
