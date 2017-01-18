@@ -13,7 +13,7 @@ namespace CS4150PS1
         /// <summary>
         /// Available words
         /// </summary>
-        ArrayList words;
+        //ArrayList words;
         /// <summary>
         /// Words that are not anagrams
         /// </summary>
@@ -41,37 +41,42 @@ namespace CS4150PS1
         /// <summary>
         /// Method that adds words from standard input into the dictionary Arraylist
         /// </summary>
-        public ArrayList AddWords()
+        public string[] AddWords()
         {
-            words = new ArrayList();
+            string[] words;
             string word = "";
+            char[] spacers = { '\n', '\t', ' ' };
             try
             {
-                while ((word = Console.ReadLine()) != null && word.Length > 0)
-                {
-                    if (word.Any(ch => Char.IsLetterOrDigit(ch)))
-                    //if (String.IsNullOrWhiteSpace(word) == false && word.Length > 0)
-                    {
-                        if (word.Length > 1000)
-                        {
-                            throw new Exception();
-                        }
 
-                        words.Add(word);
-                    }
+                word = Console.ReadLine();
+                   words = word.Split(spacers);
+
+                //while ((word = Console.ReadLine()) != null && word.Length > 0)
+                //{
+                //    if (word.Any(ch => Char.IsLetterOrDigit(ch)))
+                //    //if (String.IsNullOrWhiteSpace(word) == false && word.Length > 0)
+                //    {
+                //        if (word.Length > 1000)
+                //        {
+                //            throw new Exception();
+                //        }
+
+                //        words.Add(word);
+                //    }
                     //else
                     //{
                     //    throw new ArgumentException();
                     //}
-                }
+                
             }
             catch (ArgumentException e1)
             {
-                return new ArrayList();
+                return new string[0];
             }
             catch (Exception e2)
             {
-                return new ArrayList();
+                return new string[0];
             }
             return words;
         }
@@ -81,7 +86,7 @@ namespace CS4150PS1
         /// </summary>
         /// <param name="w">Arraylist of words</param>
         /// <returns>The number of words that are not anagrams</returns>
-        public string NotAnagrams(ArrayList w)
+        public string NotAnagrams(string[] w)
         {
             try
             {
@@ -89,20 +94,24 @@ namespace CS4150PS1
                 rejected = new HashSet<string>();
 
                 // If there are no words in the dictionary
-                if (w.Count == 0)
+                if (w.Length == 0)
                 {
                     //Console.WriteLine("0");
                     return "0";
                 }
 
-                w.RemoveAt(0);
-                if (w.Count > 10000)
+                //w.RemoveAt(0);
+                if (w.Length > 10000)
                 {
                     throw new Exception();
                 }
 
                 foreach (string word in w)
                 {
+                    if (w.ElementAt(0) == word || w.ElementAt(1) == word)
+                    {
+                        continue;
+                    }
                     // Sorts the word alphabetically
                     sortedWord = String.Concat(word.OrderBy(c => c));
 
