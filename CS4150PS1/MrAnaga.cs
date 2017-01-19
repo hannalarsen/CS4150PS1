@@ -13,7 +13,7 @@ namespace CS4150PS1
         /// <summary>
         /// Available words
         /// </summary>
-        //ArrayList words;
+        ArrayList words;
         /// <summary>
         /// Words that are not anagrams
         /// </summary>
@@ -41,42 +41,37 @@ namespace CS4150PS1
         /// <summary>
         /// Method that adds words from standard input into the dictionary Arraylist
         /// </summary>
-        public string[] AddWords()
+        public ArrayList AddWords()
         {
-            string[] words;
+            words = new ArrayList();
             string word = "";
-            char[] spacers = { '\n', '\t', ' ' };
             try
             {
+                while ((word = Console.ReadLine()) != null && word.Length > 0)
+                {
+                    if (word.Any(ch => Char.IsLetterOrDigit(ch)))
+                    {
+                        if (word.Length > 1000)
+                        {
+                            throw new Exception();
+                        }
 
-                word = Console.ReadLine();
-                   words = word.Split(spacers);
+                        words.Add(word);
+                    }
+                    else
+                    {
+                        throw new ArgumentException();
+                    }
 
-                //while ((word = Console.ReadLine()) != null && word.Length > 0)
-                //{
-                //    if (word.Any(ch => Char.IsLetterOrDigit(ch)))
-                //    //if (String.IsNullOrWhiteSpace(word) == false && word.Length > 0)
-                //    {
-                //        if (word.Length > 1000)
-                //        {
-                //            throw new Exception();
-                //        }
-
-                //        words.Add(word);
-                //    }
-                    //else
-                    //{
-                    //    throw new ArgumentException();
-                    //}
-                
+                }
             }
             catch (ArgumentException e1)
             {
-                return new string[0];
+                return new ArrayList();
             }
             catch (Exception e2)
             {
-                return new string[0];
+                return new ArrayList();
             }
             return words;
         }
@@ -86,32 +81,29 @@ namespace CS4150PS1
         /// </summary>
         /// <param name="w">Arraylist of words</param>
         /// <returns>The number of words that are not anagrams</returns>
-        public string NotAnagrams(string[] w)
+        public string NotAnagrams(ArrayList w)
         {
             try
             {
                 solutions = new HashSet<string>();
                 rejected = new HashSet<string>();
 
+                // Remove the first line w/ integers
+                w.RemoveAt(0);
+
                 // If there are no words in the dictionary
-                if (w.Length == 0)
+                if (w.Count == 0)
                 {
-                    //Console.WriteLine("0");
                     return "0";
                 }
 
-                //w.RemoveAt(0);
-                if (w.Length > 10000)
+                if (w.Count > 10000)
                 {
                     throw new Exception();
                 }
 
                 foreach (string word in w)
                 {
-                    if (w.ElementAt(0) == word || w.ElementAt(1) == word)
-                    {
-                        continue;
-                    }
                     // Sorts the word alphabetically
                     sortedWord = String.Concat(word.OrderBy(c => c));
 
@@ -130,12 +122,12 @@ namespace CS4150PS1
 
                 if (solutions.Count == 0)
                 {
-                    Console.WriteLine("0");
                     return "0";
                 }
+
                 int total = solutions.Count;
+
                 // Returns the number of unique words 
-                //Console.WriteLine(total.ToString());
                 return total.ToString();
             }
             catch (Exception e)

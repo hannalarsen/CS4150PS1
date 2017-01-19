@@ -22,14 +22,15 @@ namespace MrAnagaTiming
 
         public static void RunIt()
         {
-            int size = 10;
+            int size = 50;
             double previousTime = 0;
+            Console.WriteLine("\nSize\tTime (msec)\tDelta (msec)");
             for (int i = 0; i <= 10; i++)
             {
                 size = size * 2;
-                double currentTime = TimeIt(size - 1);
-                Console.WriteLine("\nSize\tTime (msec)\tDelta (msec)");
-                Console.Write((size - 1) + "\t" + currentTime.ToString("G3"));
+                double currentTime = TimeIt(size);
+                //Console.WriteLine("\nSize\tTime (msec)\tDelta (msec)");
+                Console.Write((size) + "\t" + currentTime.ToString("G3"));
                 if (i > 0)
                 {
                     Console.WriteLine("   \t" + (currentTime - previousTime).ToString("G3"));
@@ -44,21 +45,21 @@ namespace MrAnagaTiming
         public static double TimeIt(int k)
         {
             MrAnaga m = new MrAnaga(); 
-            int n = 100;
+            int n = 0;
             string letters = "abcdefghijklmnopqrstuvwxyz";
-            var stringChars = new char[k];
+            var stringChars = new char[6];
             var random = new Random();
             ArrayList words = new ArrayList();
             // Generates words to put in dictionary
-            while (n <= 10000)
+            while (n <= k)
             {
-                for(int i = 0; i < stringChars.Length; i++)
+                for(int i = 0; i < 6; i++)
                 {
                     stringChars[i] = letters[random.Next(letters.Length)];
                 }
                 string word = new string(stringChars);
                 words.Add(word);
-                n = n + 100;
+                n = n + 1;
             }
 
             // Create a stopwatch
